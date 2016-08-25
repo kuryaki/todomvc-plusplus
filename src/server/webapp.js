@@ -14,6 +14,12 @@ app.set('views', path.join(__dirname, 'views'));
 // Configure middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// X-Shenanigans: None
+app.use('/todos', (req, res, next) => {
+  res.headers('X-Shenanigans', 'None');
+  next();
+});
+
 // Static file serving happens everywhere but in production
 if (process.env.NODE_ENV !== 'production') {
   let staticPath = path.join(__dirname, '..', '..', 'public');
